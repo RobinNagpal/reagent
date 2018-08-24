@@ -23,7 +23,7 @@
           :exclude clojure.string
           :source-paths ["src"]}
 
-  :profiles {:dev {:dependencies [[org.clojure/clojurescript "1.10.312"]
+  #_#_:profiles {:dev {:dependencies [[org.clojure/clojurescript "1.10.312"]
                                   [figwheel "0.5.16"]
                                   [doo "0.1.10"]
                                   [cljsjs/prop-types "15.6.2-0"]]

@@ -370,7 +370,16 @@
 (defn hiccup-err [v & msg]
   (str (apply str msg) ": " (str-coll v) "\n" (comp/comp-name)))
 
-(defn vec-to-elem [v]
+(defn vec-to-elem
+  "Converts an vector of the form [component ...] or [:div ...] to a react element
+
+   If the first element in vector is
+   1) :<>  - created a react fragment
+   2) HTML tag - creates a react element by invoking react/createElement
+   3) NativeWrapper
+   4) else - Gets the component from cache, and if not found it creates a new one
+  "
+  [v]
   (assert (pos? (count v)) (hiccup-err v "Hiccup form should not be empty"))
   (let [tag (nth v 0 nil)]
     (assert (valid-tag? tag) (hiccup-err v "Invalid Hiccup form"))
